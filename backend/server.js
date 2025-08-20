@@ -1,10 +1,13 @@
-import chalk, { Chalk } from "chalk";
+import chalk from "chalk";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import {morganMiddleware, systemLogs} from "./utils/Logger.js";
+import connectDB from "./config/db.js";
 
+
+await connectDB();
 const app = express();
 
 if(process.env.NODE_ENV === 'production'){
