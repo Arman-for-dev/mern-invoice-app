@@ -5,7 +5,7 @@ import express from "express";
 import morgan from "morgan";
 import {morganMiddleware, systemLogs} from "./utils/Logger.js";
 import connectDB from "./config/db.js";
-
+import mongoSanitize from "express-mongo-sanitize";
 
 await connectDB();
 const app = express();
@@ -17,7 +17,7 @@ if(process.env.NODE_ENV === 'production'){
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-
+app.use(mongoSanitize());
 app.use(morganMiddleware)
 
 
